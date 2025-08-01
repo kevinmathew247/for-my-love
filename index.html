@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="index.html" class="nav__logo">Kevin & Archu❤️</a>
+            </div>
+
+            <!-- NAV MENU -->
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="milestones.html" class="nav__link">Milestones</a></li>
+                    <li class="nav__item"><a href="gallery.html" class="nav__link">Gallery</a></li>
+                </ul>
+            </div>
+
+            <!-- HAMBURGER MENU ICON -->
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+        <!--===== HOME =====-->
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title">
+                    Hi Love,<br> 
+                    Happy <span class="home__title-color">Girlfriend’s Day 💕</span><br> 
+                    I Love You So Much! 🥰
+                </h1>
+                </br>
+                <p class="home__note">
+                    I couldn’t send you anything today, so I built you this little website to show how much you mean to me ❤️
+                </p>
+            </div>
+
+            <div class="home__img-container">
+                <img src="assets/img/home-pic.png" alt="Us" class="home__img">
+                <br>
+            </div>
+        
+            <!-- ✅ BUTTON OUTSIDE IMAGE CONTAINER -->
+            <a href="milestones.html" class="button story-button">See Our Story</a>
+        </section>     
+    </main>
+
+    <!--===== FOOTER =====-->
+    <footer class="footer">
+        <p class="footer__title">With Love ❤️</p>
+        <div class="footer__social">
+            <a href="https://www.instagram.com/_kevin_mathew_?igsh=MXJlcWR0Ym10NTFtZA==" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+            <a href="https://www.instagram.com/archanajose?igsh=dHBkY3Jrdnp2dGU5" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+        </div>
+        <p class="footer__copy">Our forever space © 2025</p>
+    </footer>
+
+    <!--===== HAMBURGER MENU JS =====-->
+    <script>
+        const toggle = document.getElementById('nav-toggle');
+        const menu = document.getElementById('nav-menu');
+
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
+</body>
+</html>
