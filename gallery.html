@@ -67,6 +67,8 @@
 
     <!--===== HAMBURGER MENU JS =====-->
     <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Hamburger menu toggle
         const toggle = document.getElementById('nav-toggle');
         const menu = document.getElementById('nav-menu');
 
@@ -74,57 +76,50 @@
             menu.classList.toggle('show');
         });
 
-       document.addEventListener('DOMContentLoaded', () => {
-    const toggle = document.getElementById('nav-toggle');
-    const menu = document.getElementById('nav-menu');
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const downloadBtn = document.querySelector('.lightbox-download');
 
-    toggle.addEventListener('click', () => {
-        menu.classList.toggle('show');
-    });
+        document.querySelectorAll('.polaroid img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = img.src;
 
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.querySelector('.lightbox-img');
-    const closeBtn = document.querySelector('.lightbox-close');
-    const downloadBtn = document.querySelector('.lightbox-download');
+                // Remove any old listeners
+                const newDownloadBtn = downloadBtn.cloneNode(true);
+                downloadBtn.parentNode.replaceChild(newDownloadBtn, downloadBtn);
 
-    document.querySelectorAll('.polaroid img').forEach(img => {
-        img.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src;
-
-            // Remove any old listeners
-            const newDownloadBtn = downloadBtn.cloneNode(true);
-            downloadBtn.parentNode.replaceChild(newDownloadBtn, downloadBtn);
-
-            newDownloadBtn.addEventListener('click', () => {
-                // Use fetch + blob to download
-                fetch(img.src)
-                    .then(resp => resp.blob())
-                    .then(blob => {
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = img.src.split('/').pop(); // Extract file name
-                        document.body.appendChild(a);
-                        a.click();
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(url);
-                    })
-                    .catch(() => alert('Download failed!'));
+                newDownloadBtn.addEventListener('click', () => {
+                    fetch(img.src)
+                        .then(resp => resp.blob())
+                        .then(blob => {
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = img.src.split('/').pop();
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        })
+                        .catch(() => alert('Download failed!'));
+                });
             });
         });
-    });
 
-    closeBtn.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
-
-    lightbox.addEventListener('click', e => {
-        if (e.target === lightbox) {
+        // Close lightbox
+        closeBtn.addEventListener('click', () => {
             lightbox.style.display = 'none';
-        }
+        });
+
+        lightbox.addEventListener('click', e => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
     });
-});
     </script>
 
     <!-- Lightbox Popup -->
