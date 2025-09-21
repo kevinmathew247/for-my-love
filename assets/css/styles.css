@@ -6,149 +6,30 @@
   --header-height: 3rem;
   --font-semi: 600;
 
-  /*===== Colors (romantic theme) =====*/
-  --hue-color: 340; /* Pinkish tone */
+  /* Colors (romantic theme) */
+  --hue-color: 340; 
   --first-color: hsl(var(--hue-color), 80%, 65%);
   --second-color: hsl(var(--hue-color), 30%, 20%);
 
-  /*===== Fonts & Typography =====*/
+  /* Fonts & Typography */
   --body-font: "Poppins", sans-serif;
   --big-font-size: 2.5rem;
   --h2-font-size: 1.5rem;
   --normal-font-size: .95rem;
   --smaller-font-size: .8rem;
 
-  /*===== Margins =====*/
+  /* Margins */
   --mb-2: 1rem;
   --mb-4: 2rem;
   --mb-5: 2.5rem;
   --mb-6: 3rem;
 
-  /*===== z index =====*/
+  /* z-index */
   --z-back: -10;
   --z-fixed: 100;
 }
 
-body {
-  margin: var(--header-height) 0 0 0;
-  font-family: var(--body-font);
-  font-size: var(--normal-font-size);
-  color: var(--second-color);
-  background: #fff0f6; /* Soft romantic background */
-}
-
-a {
-  text-decoration: none;
-  color: var(--first-color);
-}
-
-/* Header */
-.l-header {
-  background-color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Buttons */
-.button {
-  display: inline-block;
-  background-color: var(--first-color);
-  color: #fff;
-  padding: 0.75rem 2.5rem;
-  font-weight: var(--font-semi);
-  border-radius: 0.75rem;
-  transition: 0.3s;
-}
-.button:hover {
-  box-shadow: 0px 10px 36px rgba(255, 105, 180, 0.3);
-}
-
-/* Section Titles */
-.section-title {
-  font-size: var(--h2-font-size);
-  color: var(--first-color);
-  text-align: center;
-  margin-bottom: var(--mb-4);
-  position: relative;
-}
-.section-title::after {
-  content: "";
-  width: 64px;
-  height: 0.18rem;
-  background-color: var(--first-color);
-  display: block;
-  margin: 0.5rem auto 0 auto;
-}
-
-/* Gallery Grid */
-.gallery__container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
-  padding: 2rem;
-}
-.gallery__container img {
-  width: 100%;
-  border-radius: 1rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.4s;
-}
-.gallery__container img:hover {
-  transform: scale(1.05);
-}
-
-/* Milestone Timeline */
-.timeline {
-  position: relative;
-  padding: 2rem;
-  max-width: 700px;
-  margin: auto;
-}
-.timeline::before {
-  content: "";
-  position: absolute;
-  width: 3px;
-  background-color: var(--first-color);
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.milestone {
-  padding: 1rem 2rem;
-  position: relative;
-  width: 50%;
-}
-.milestone-left {
-  left: 0;
-}
-.milestone-right {
-  left: 50%;
-}
-.milestone::before {
-  content: "❤";
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  background: var(--first-color);
-  color: white;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 30px;
-  top: 15px;
-  left: -15px;
-}
-.milestone-right::before {
-  left: auto;
-  right: -15px;
-}
-.milestone p {
-  background: #fff;
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* ===== RESET & BASE ===== */
+/*===== RESET & BASE =====*/
 * {
   margin: 0;
   padding: 0;
@@ -156,14 +37,21 @@ a {
 }
 
 body {
-  margin: 0;
-  font-family: "Poppins", sans-serif;
-  background-color: #fff0f6; /* Soft pink background */
-  color: hsl(340, 30%, 20%);
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: var(--second-color);
+  background: #fff0f6; 
   line-height: 1.6;
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+  color: var(--first-color);
+}
+
+/*===== HEADER =====*/
 .l-header {
   background-color: white;
   position: fixed;
@@ -220,8 +108,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .nav__list {
-    flex-direction: column;
+  .nav__menu {
     position: fixed;
     top: 4rem;
     right: -100%;
@@ -229,24 +116,34 @@ body {
     width: 70%;
     height: 100%;
     padding: 2rem;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: -2px 0 10px rgba(0,0,0,0.1);
     transition: 0.4s;
   }
+
+  .nav__menu.show {
+    right: 0;
+  }
+
+  .nav__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
   .nav__toggle {
     display: block;
     color: hsl(340, 50%, 40%);
   }
-  .nav__list.show {
-    right: 0;
-  }
 }
 
+/*===== MAIN LAYOUT =====*/
 .l-main {
   max-width: 1100px;
   margin: auto;
   padding: 6rem 2rem 3rem 2rem;
 }
 
+/*===== HOME =====*/
 .home__img {
   position: relative;
   width: 300px;
@@ -264,6 +161,19 @@ body {
   padding: 10px;
 }
 
+.home__img-container {
+  text-align: center;
+  margin-top: 2rem;
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  0% { transform: translateY(50px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/*===== BUTTONS =====*/
 .button {
   display: inline-block;
   background-color: hsl(340, 70%, 65%);
@@ -278,6 +188,7 @@ body {
   background-color: hsl(340, 80%, 55%);
 }
 
+/*===== SECTION TITLES =====*/
 .section-title {
   font-size: 2rem;
   text-align: center;
@@ -296,6 +207,7 @@ body {
   border-radius: 2px;
 }
 
+/*===== FOOTER =====*/
 .footer {
   text-align: center;
   padding: 2rem;
@@ -305,25 +217,7 @@ body {
   border-top: 1px solid #eee;
 }
 
-.home__img-container {
-  text-align: center;
-  margin-top: 2rem;
-  animation: fadeInUp 1.2s ease-out forwards;
-  opacity: 0;
-}
-
-@keyframes fadeInUp {
-  0% {
-    transform: translateY(50px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-  
-}
-
+/*===== STORY BUTTON =====*/
 .story-button {
   display: block;
   text-align: center;
@@ -331,6 +225,7 @@ body {
   width: fit-content;
 }
 
+/*===== MILESTONE CARDS =====*/
 .milestone-cards {
   display: flex;
   flex-direction: column;
@@ -363,6 +258,7 @@ body {
   color: hsl(340, 30%, 25%);
 }
 
+/*===== GALLERY =====*/
 .gallery__container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -382,7 +278,9 @@ body {
 }
 
 .polaroid img {
-  width: 100%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
   border-radius: 8px;
 }
 
@@ -396,4 +294,241 @@ body {
 .polaroid:hover {
   transform: translateY(-5px) rotate(-1deg);
   box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/*===== MILESTONE TIMELINE =====*/
+.timeline {
+  position: relative;
+  padding: 2rem;
+  max-width: 700px;
+  margin: auto;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  width: 3px;
+  background-color: var(--first-color);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.milestone {
+  padding: 1rem 2rem;
+  position: relative;
+  width: 50%;
+}
+
+.milestone-left {
+  left: 0;
+}
+
+.milestone-right {
+  left: 50%;
+}
+
+.milestone::before {
+  content: "❤";
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: var(--first-color);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 30px;
+  top: 15px;
+  left: -15px;
+}
+
+.milestone-right::before {
+  left: auto;
+  right: -15px;
+}
+
+.milestone p {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*===== ROMANTIC LOVE CARD =====*/
+.love-card {
+  background: linear-gradient(180deg, #fff, #fff0f6);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  margin-top: 2rem;
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 12px 30px rgba(255, 100, 160, 0.15);
+  border: 1px solid rgba(255, 180, 210, 0.4);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.love-opening {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: hsl(340, 55%, 35%);
+  margin-bottom: 1rem;
+}
+
+.love-text {
+  margin-bottom: 1rem;
+  color: hsl(340, 30%, 25%);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.love-sign {
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: hsl(340, 45%, 30%);
+}
+
+.love-name {
+  color: var(--first-color);
+  font-weight: 700;
+  font-style: italic;
+}
+
+.heart-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.heart {
+  font-size: 1.8rem;
+  animation: heartbeat 1.2s infinite ease-in-out;
+  color: var(--first-color);
+  text-shadow: 0 0 12px rgba(255, 105, 180, 0.4);
+}
+
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.2); }
+  40%  { transform: scale(0.95); }
+  60%  { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.love-card::before,
+.love-card::after {
+  content: "❤";
+  position: absolute;
+  font-size: 2rem;
+  color: rgba(255, 105, 180, 0.15);
+  animation: floatHearts 6s linear infinite;
+}
+
+.love-card::before {
+  top: 20%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.love-card::after {
+  bottom: 15%;
+  right: -10%;
+  animation-delay: 3s;
+}
+
+@keyframes floatHearts {
+  0% { transform: translateY(0) scale(1); opacity: 0.5; }
+  50% { transform: translateY(-40px) scale(1.2); opacity: 0.8; }
+  100% { transform: translateY(-80px) scale(1); opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .love-card {
+    padding: 1.2rem;
+    border-radius: 1rem;
+  }
+  .love-text {
+    font-size: 0.95rem;
+  }
+  .love-opening {
+    font-size: 1.2rem;
+  }
+}
+
+/*===== LIGHTBOX =====*/
+.lightbox {
+  display: none; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.85);
+  z-index: 200;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lightbox-img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  margin-bottom: 1rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.lightbox-download {
+  background-color: var(--first-color);
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+  margin-top: 1rem;
+}
+
+.lightbox-download:hover {
+  background-color: hsl(340, 80%, 55%);
+}
+
+/*===== COUNTDOWN TIMER =====*/
+#countdown-container {
+    position: fixed;
+    top: 5rem;
+    right: 1rem;
+    background-color: rgba(255, 192, 203, 0.9); /* soft pink */
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+    z-index: 300;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Mobile: below the "See Our Story" button */
+@media (max-width: 768px) {
+    #countdown-container {
+        position: static; /* remove fixed positioning */
+        margin: 1rem auto 0 auto; /* add spacing above */
+        max-width: 300px; /* optional for better layout */
+        display: block; /* ensure block-level element */
+    }
 }

@@ -37,22 +37,47 @@
             <div class="home__data">
                 <h1 class="home__title">
                     Hi Love,<br> 
-                    Happy <span class="home__title-color">Girlfriend’s Day 💕</span><br> 
+                    Happy <span class="home__title-color">Wife Appreciation Day 💕</span><br> 
                     I Love You So Much! 🥰
                 </h1>
                 </br>
-                <p class="home__note">
-                    I couldn’t send you anything today, so I built you this little website to show how much you mean to me ❤️
-                </p>
-            </div>
+                <div class="home__img-container">
+                    <img src="assets/img/home-pic.png" alt="Us" class="home__img">
+                    <br>
+                </div>
+                <!-- ✅ BUTTON OUTSIDE IMAGE CONTAINER -->
+                <a href="milestones.html" class="button story-button">See Our Story</a>
 
-            <div class="home__img-container">
-                <img src="assets/img/home-pic.png" alt="Us" class="home__img">
-                <br>
+                <!-- Countdown Timer -->
+                <div id="countdown-container">
+                    <h3>Until We Meet 💖</h3>
+                    <div id="countdown">Loading...</div>
+                </div>
+                <div class="love-card">
+                    <p class="love-opening">To My Everything,</p>
+
+                    <p class="love-text">
+                        You are not just the love of my life — you <b>are</b> my life. You are the smile that lights up my darkest days, and the dream I never want to wake from. Even before we’re married, my soul already knows you as my wife, my partner, my forever.
+                    </p>
+
+                    <p class="love-text">
+                        Every laugh and tear we’ve shared, every every little moment with you is a treasure I hold so close. No words will ever be enough to explain how deeply I adore you, how grateful I am for you, and how certain I am that I was made to love you.
+                    </p>
+
+                    <p class="love-text">
+                        On this Wife Appreciation Day, I just want to say: you are my heart, my home, and my everything. I will love you, choose you, and cherish you today, tomorrow, and for all the days we’re blessed to share.
+                    </p>
+
+                    <p class="love-sign">
+                        Forever yours,<br>
+                        <span class="love-name">Kevin</span>
+                    </p>
+
+                    <div class="heart-wrap" aria-hidden="true">
+                        <span class="heart">❤</span>
+                    </div>
+                </div>
             </div>
-        
-            <!-- ✅ BUTTON OUTSIDE IMAGE CONTAINER -->
-            <a href="milestones.html" class="button story-button">See Our Story</a>
         </section>     
     </main>
 
@@ -74,6 +99,34 @@
         toggle.addEventListener('click', () => {
             menu.classList.toggle('show');
         });
+    </script>
+
+    <script>
+        // Set the target date: December 23 of the current year
+        const targetDate = new Date(new Date().getFullYear(), 11, 23, 0, 0, 0); // Month is 0-indexed (11 = December)
+        const countdownEl = document.getElementById('countdown');
+
+        function updateCountdown() {
+            const now = new Date();
+            const diff = targetDate - now;
+
+            if(diff <= 0){
+                countdownEl.innerHTML = "We're Together! 💕";
+                clearInterval(timerInterval);
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutes = Math.floor((diff / (1000 * 60)) % 60);
+            const seconds = Math.floor((diff / 1000) % 60);
+
+            countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Update every second
+        updateCountdown(); // initial call
+        const timerInterval = setInterval(updateCountdown, 1000);
     </script>
 </body>
 </html>
