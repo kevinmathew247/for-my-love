@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Games ❤️</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!--===== HEADER =====-->
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="index.html" class="nav__logo">Kevin & Archu❤️</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="milestones.html" class="nav__link">Milestones</a></li>
+                    <li class="nav__item"><a href="gallery.html" class="nav__link">Gallery</a></li>
+                    <li class="nav__item"><a href="games.html" class="nav__link active-link">Games</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+    <div class="light-garland" aria-hidden="true">
+        <span class="bulb bulb-red"></span>
+        <span class="bulb bulb-gold"></span>
+        <span class="bulb bulb-green"></span>
+        <span class="bulb bulb-pink"></span>
+        <span class="bulb bulb-gold"></span>
+        <span class="bulb bulb-red"></span>
+        <span class="bulb bulb-green"></span>
+        <span class="bulb bulb-gold"></span>
+        <span class="bulb bulb-pink"></span>
+        <span class="bulb bulb-green"></span>
+    </div>
+    <div class="snow-layer" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <main class="l-main">
+        <section class="section">
+            <h2 class="section-title">Game Time 🎲</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <div class="game-header">
+                        <span class="game-icon">🎡</span>
+                        <h3>Spin a Date Idea</h3>
+                    </div>
+                    <p id="date-idea" class="game-text">Tap spin to plan our next cozy moment.</p>
+                    <button class="button game-button" id="spin-date">Spin</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-header">
+                        <span class="game-icon">🤔</span>
+                        <h3>Would You Rather</h3>
+                    </div>
+                    <p id="wyr" class="game-text">Let’s see what you pick...</p>
+                    <button class="button game-button" id="new-wyr">Shuffle</button>
+                </div>
+                <div class="game-card">
+                    <div class="game-header">
+                        <span class="game-icon">✨</span>
+                        <h3>Memory Spark</h3>
+                    </div>
+                    <p id="spark" class="game-text">Pull a prompt and reminisce.</p>
+                    <button class="button game-button" id="draw-spark">Draw</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section wordle-section">
+            <h2 class="section-title">Couples Wordle ❤️🔤</h2>
+            <div class="wordle-card">
+                <div class="wordle-top">
+                    <div class="wordle-players">
+                        <label for="wordle-player">Who’s playing?</label>
+                        <select id="wordle-player">
+                            <option value="Kevin">Kevin</option>
+                            <option value="Archu">Archu</option>
+                        </select>
+                        <button class="button game-button wordle-start" id="wordle-start">Start / Reset</button>
+                    </div>
+                    <div class="wordle-status">
+                        <div id="wordle-date"></div>
+                        <div id="wordle-tries">Tries: 0 / 6</div>
+                    </div>
+                </div>
+
+                <div class="wordle-grid" id="wordle-grid" aria-live="polite"></div>
+
+                <div class="wordle-inputs">
+                    <input id="wordle-guess" maxlength="5" placeholder="type 5-letter word" aria-label="Wordle guess">
+                    <button class="button game-button" id="wordle-submit">Submit</button>
+                </div>
+                <p class="wordle-message" id="wordle-message" aria-live="polite"></p>
+            </div>
+        </section>
+    </main>
+
+    <!--===== FOOTER =====-->
+    <footer class="footer">
+        <p class="footer__title">With Love ❤️</p>
+        <div class="footer__social">
+            <a href="https://www.instagram.com/_kevin_mathew_?igsh=MXJlcWR0Ym10NTFtZA==" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+            <a href="https://www.instagram.com/archanajose?igsh=dHBkY3Jrdnp2dGU5" class="footer__icon"><i class='bx bxl-instagram'></i></a>
+        </div>
+        <p class="footer__copy">Our forever space © 2025</p>
+    </footer>
+
+    <!--===== HAMBURGER MENU JS =====-->
+    <script>
+        const toggle = document.getElementById('nav-toggle');
+        const menu = document.getElementById('nav-menu');
+
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    </script>
+
+    <script>
+        const dateIdeas = [
+            "Watch the same movie and live-text reactions 🍿",
+            "Dress up fancy for a virtual dinner date ✨",
+            "Cook something together on video—same dish, taste-test together 👩‍🍳👨‍🍳",
+            "Plan our next travel itinerary 🗺️",
+            "Write a short love letter for each other and exchange it on call",
+            "Write 5 reasons we love each other and swap ❤️",
+            "Dance party on video—no excuses 💃🕺",
+            "Draw each other on call in 5 mins 📸",
+            "Build a shared playlist with 3 songs each 🎧"
+        ];
+
+        const wyrPrompts = [
+            "Snowy cabin weekend or beach sunrise getaway?",
+            "Cook dinner together or order in and play games?",
+            "Slow dance in the living room or stargaze on a rooftop?",
+            "Match PJs night or dress-up date at home?",
+            "Love letter swap or voice-note confessions?",
+            "Board game marathon or puzzle-building night?",
+            "Make a dessert together or mix mocktails together?",
+            "Karaoke battle or duet serenade?",
+            "Sunset walk or sunrise coffee?",
+            "Plan a spontaneous day or plan a perfect itinerary?"
+        ];
+
+        const memorySparks = [
+            "What little moment made you realize you were falling for me?",
+            "Pick one song that now reminds you of us and tell me why.",
+            "Describe a future ordinary day together that sounds perfect.",
+            "What’s your favorite thing we do to handle long distance?",
+            "Share a tiny habit of mine you secretly love.",
+            "If we could relive one video call, which would it be and why?",
+            "Describe the exact hug you’re saving for me.",
+            "What’s a new tradition you want us to start next time we meet?",
+            "What did you feel the first time you saw my smile?",
+        ];
+
+        function randomPick(list) { return list[Math.floor(Math.random() * list.length)]; }
+        function setText(id, text) { const el = document.getElementById(id); if (el) el.innerText = text; }
+
+        const spinBtn = document.getElementById('spin-date');
+        const wyrBtn = document.getElementById('new-wyr');
+        const sparkBtn = document.getElementById('draw-spark');
+
+        if (spinBtn) { spinBtn.addEventListener('click', () => setText('date-idea', randomPick(dateIdeas))); setText('date-idea', randomPick(dateIdeas)); }
+        if (wyrBtn) { wyrBtn.addEventListener('click', () => setText('wyr', randomPick(wyrPrompts))); setText('wyr', randomPick(wyrPrompts)); }
+        if (sparkBtn) { sparkBtn.addEventListener('click', () => setText('spark', randomPick(memorySparks))); setText('spark', randomPick(memorySparks)); }
+    </script>
+
+    <script>
+        // Wordle setup
+        const WORD_LIST = [
+            "candy","dream","heart","shine","story","grace","light","sweet","spark","brave",
+            "smile","sunny","honey","beach","olive","apple","cabin","flora","bloom","lucky",
+            "happy","faith","quiet","swoon","cupid","toast","cocoa","angel","piano","music",
+            "toast","amber","crown","mango","jazzy","ocean","pasta","daisy","lemon","charm",
+            "vibes","mirth","noble","royal","vivid","fairy","gleam","novel","bliss","cabin",
+            "peace","grins","cheer","sugar","frost","happy","jolly","snugs","buddy","bunny",
+            "cloud","lilac","satin","berry","spice","cider","cabin","glee","pride","magic",
+            "story","flame","candy","twirl","fable","amour","spark","glory","bound","honey"
+        ];
+
+        const gridEl = document.getElementById('wordle-grid');
+        const guessInput = document.getElementById('wordle-guess');
+        const submitBtn = document.getElementById('wordle-submit');
+        const startBtn = document.getElementById('wordle-start');
+        const playerSelect = document.getElementById('wordle-player');
+        const triesEl = document.getElementById('wordle-tries');
+        const dateEl = document.getElementById('wordle-date');
+        const messageEl = document.getElementById('wordle-message');
+
+        let currentDateStr = getTodayStr();
+        let secret = pickSecretForDate(currentDateStr);
+        let currentRow = 0;
+        let currentGuess = "";
+        const maxRows = 6;
+        const wordLength = 5;
+
+        initGrid();
+        updateMeta();
+        scheduleMidnightReset();
+
+        function hashDate(str) {
+            let h = 0;
+            for (let i = 0; i < str.length; i++) {
+                h = (h << 5) - h + str.charCodeAt(i);
+                h |= 0;
+            }
+            return h;
+        }
+
+        function getTodayStr() {
+            return new Date().toISOString().slice(0,10);
+        }
+
+        function pickSecretForDate(dateStr) {
+            const idx = Math.abs(hashDate(dateStr)) % WORD_LIST.length;
+            return WORD_LIST[idx].toUpperCase();
+        }
+
+        function initGrid() {
+            if (!gridEl) return;
+            gridEl.innerHTML = "";
+            for (let r = 0; r < maxRows; r++) {
+                for (let c = 0; c < wordLength; c++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'wordle-cell';
+                    cell.dataset.row = r;
+                    cell.dataset.col = c;
+                    gridEl.appendChild(cell);
+                }
+            }
+        }
+
+        function updateMeta() {
+            if (triesEl) triesEl.textContent = `Tries: ${currentRow} / ${maxRows}`;
+            if (dateEl) dateEl.textContent = `Word for ${currentDateStr}`;
+        }
+
+        function setMessage(text, type = '') {
+            if (!messageEl) return;
+            messageEl.textContent = text;
+            messageEl.classList.remove('error', 'success');
+            if (type) messageEl.classList.add(type);
+        }
+
+        function resetGame() {
+            currentRow = 0;
+            currentGuess = "";
+            initGrid();
+            updateMeta();
+            setMessage("New 5-letter word every day. 6 tries.", "");
+            if (guessInput) {
+                guessInput.value = "";
+                guessInput.focus();
+            }
+        }
+
+        function renderGuess(guess, row) {
+            for (let i = 0; i < wordLength; i++) {
+                const cell = gridEl.querySelector(`[data-row='${row}'][data-col='${i}']`);
+                if (cell) cell.textContent = guess[i] || "";
+            }
+        }
+
+        function colorRow(guess, row) {
+            const secretCounts = {};
+            for (const ch of secret) secretCounts[ch] = (secretCounts[ch] || 0) + 1;
+
+            const cells = [];
+            for (let i = 0; i < wordLength; i++) {
+                const cell = gridEl.querySelector(`[data-row='${row}'][data-col='${i}']`);
+                cells.push(cell);
+            }
+
+            // first pass for correct
+            for (let i = 0; i < wordLength; i++) {
+                if (guess[i] === secret[i]) {
+                    cells[i].classList.add('correct');
+                    secretCounts[guess[i]] -= 1;
+                }
+            }
+            // second pass for present/absent
+            for (let i = 0; i < wordLength; i++) {
+                if (cells[i].classList.contains('correct')) continue;
+                if (secretCounts[guess[i]] > 0) {
+                    cells[i].classList.add('present');
+                    secretCounts[guess[i]] -= 1;
+                } else {
+                    cells[i].classList.add('absent');
+                }
+            }
+        }
+
+        function handleSubmit() {
+            if (!guessInput) return;
+            const raw = guessInput.value.trim().toUpperCase();
+            if (raw.length !== wordLength) {
+                setMessage("Please enter a 5-letter word.", "error");
+                return;
+            }
+            renderGuess(raw, currentRow);
+            colorRow(raw, currentRow);
+            currentRow += 1;
+            updateMeta();
+            guessInput.value = "";
+
+            if (raw === secret) {
+                setMessage(`You win in ${currentRow} tries!`, "success");
+            } else if (currentRow >= maxRows) {
+                setMessage(`Out of tries! The word was ${secret}.`, "error");
+            } else {
+                setMessage("");
+            }
+        }
+
+        function handleKey(e) {
+            if (!guessInput) return;
+            if (e.key === 'Enter') {
+                handleSubmit();
+            }
+        }
+
+        function scheduleMidnightReset() {
+            setInterval(() => {
+                const today = getTodayStr();
+                if (today !== currentDateStr) {
+                    currentDateStr = today;
+                    secret = pickSecretForDate(currentDateStr);
+                    resetGame();
+                }
+            }, 60 * 1000); // check once a minute
+        }
+
+        if (submitBtn) submitBtn.addEventListener('click', handleSubmit);
+        if (startBtn) startBtn.addEventListener('click', resetGame);
+        if (guessInput) guessInput.addEventListener('keyup', handleKey);
+        resetGame();
+    </script>
+</body>
+</html>
