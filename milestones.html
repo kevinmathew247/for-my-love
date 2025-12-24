@@ -12,12 +12,13 @@
     <header class="l-header">
         <nav class="nav bd-grid">
             <div>
-                <a href="index.html" class="nav__logo">Kevin & Archu❤️</a>
+                <a href="index.html" class="nav__logo">Archu & Kevin❤️</a>
             </div>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="index.html#music" class="nav__link">Music</a></li>
                     <li class="nav__item"><a href="milestones.html" class="nav__link active-link">Milestones</a></li>
                     <li class="nav__item"><a href="gallery.html" class="nav__link">Gallery</a></li>
                     <li class="nav__item"><a href="games.html" class="nav__link">Games</a></li>
@@ -102,9 +103,22 @@
     <script>
         const toggle = document.getElementById('nav-toggle');
         const menu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav__link');
 
-        toggle.addEventListener('click', () => {
-            menu.classList.toggle('show');
+        if (toggle && menu) {
+            toggle.addEventListener('click', () => {
+                menu.classList.toggle('show');
+            });
+        }
+
+        navLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                navLinks.forEach((l) => l.classList.remove('active-link'));
+                link.classList.add('active-link');
+                if (menu) {
+                    menu.classList.remove('show');
+                }
+            });
         });
     </script>
 </body>

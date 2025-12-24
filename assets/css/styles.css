@@ -895,6 +895,19 @@ a {
 
 .music-play-icon {
   transition: opacity 0.2s ease, transform 0.2s ease;
+  display: block;
+}
+
+.music-play-icon.pause {
+  display: none;
+}
+
+.music-card.is-playing .music-play-icon.play {
+  display: none;
+}
+
+.music-card.is-playing .music-play-icon.pause {
+  display: block;
 }
 
 .music-card.is-playing .music-play-icon {
@@ -915,6 +928,24 @@ a {
   color: hsl(340, 30%, 30%);
   font-weight: 600;
   opacity: 0.8;
+}
+
+.music-now {
+  display: none;
+  margin-top: 0.4rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #1f7a4f;
+  background: rgba(31, 122, 79, 0.12);
+  padding: 0.25rem 0.55rem;
+  border-radius: 999px;
+  width: fit-content;
+}
+
+.music-card.is-playing .music-now {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .skeleton {
