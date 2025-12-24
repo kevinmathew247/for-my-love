@@ -18,6 +18,7 @@
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
                     <li class="nav__item"><a href="index.html" class="nav__link active-link">Home</a></li>
+                    <li class="nav__item"><a href="#music" class="nav__link">Music</a></li>
                     <li class="nav__item"><a href="milestones.html" class="nav__link">Milestones</a></li>
                     <li class="nav__item"><a href="gallery.html" class="nav__link">Gallery</a></li>
                     <li class="nav__item"><a href="games.html" class="nav__link">Games</a></li>
@@ -108,8 +109,41 @@
                 </div>
 
             </div>
-        </section>     
+        </section>   
+
+        <section class="music-section bd-grid" id="music">
+            <div class="music__header">
+                <p class="section-subtitle">Our soundtrack</p>
+                <h2 class="section-title">Songs that feel like us</h2>
+                <p class="section-copy">Tap a track to play or pause our saved songs.</p>
+            </div>
+            <div class="music-grid" id="music-grid" aria-live="polite">
+                <div class="music-card skeleton">
+                    <div class="skeleton-art"></div>
+                    <div class="skeleton-lines">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="music-card skeleton">
+                    <div class="skeleton-art"></div>
+                    <div class="skeleton-lines">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div class="music-card skeleton">
+                    <div class="skeleton-art"></div>
+                    <div class="skeleton-lines">
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </section>  
     </main>
+
+    <audio id="audio-player" preload="auto"></audio>
 
     <!--===== FOOTER =====-->
     <footer class="footer">
@@ -160,6 +194,81 @@
         updateCountdown();
     </script>
 
-    
-</body>
-</html>
+    <script>
+        const songsILove = [
+            { title: 'Her', artist: 'JVKE', src: 'assets/songs/JVKE - her official lyric video.mp3' },
+            { title: 'Pretty', artist: 'JVKE', src: 'assets/songs/JVKE -  pretty (official lyric video).mp3' },
+            { title: 'Carry You Home', artist: 'Alex Warren', src: 'assets/songs/Alex Warren - Carry You Home (Lyrics).mp3' },
+            { title: 'Those Eyes', artist: 'New West', src: 'assets/songs/New West - Those Eyes (Lyrics).mp3' },
+            { title: 'I Think They Call This Love', artist: 'Elliot James Reay', src: 'assets/songs/Elliot James Reay - I Think They Call This Love (Official Music Video).mp3' },
+            { title: 'Deeper Than It Seems', artist: 'Jace June', src: 'assets/songs/Jace June - Deeper Than It Seems (Official Lyric Video).mp3' },
+        ];
+
+        const musicGrid = document.getElementById('music-grid');
+        const audio = document.getElementById('audio-player');
+        let activeCard = null;
+
+        function createCard(track) {
+            const card = document.createElement('button');
+            card.className = 'music-card';
+            card.type = 'button';
+
+            card.innerHTML = `
+                <div class="music-art music-art--plain">
+                    <div class="music-overlay">
+                        <span class="music-play-icon" aria-hidden="true">▶</span>
+                    </div>
+                </div>
+                <div class="music-meta">
+                    <h3>${track.title}</h3>
+                    <p>${track.artist}</p>
+                </div>
+            `;
+
+            card.addEventListener('click', () => handlePlay(card, track));
+            return card;
+        }
+
+        function handlePlay(card, track) {
+            if (!audio) return;
+
+            if (activeCard === card) {
+                if (audio.paused) {
+                    audio.play();
+                    card.classList.add('is-playing');
+                } else {
+                    audio.pause();
+                    card.classList.remove('is-playing');
+                }
+                return;
+            }
+
+            if (activeCard && activeCard !== card) {
+                activeCard.classList.remove('is-playing');
+            }
+
+            audio.src = track.src;
+            audio.currentTime = 0;
+            audio.play();
+            activeCard = card;
+            card.classList.add('is-playing');
+        }
+
+        function buildMusicGrid() {
+            if (!musicGrid) return;
+            musicGrid.innerHTML = '';
+
+            songsILove.forEach((song) => {
+                musicGrid.appendChild(createCard(song));
+            });
+        }
+
+        audio.addEventListener('ended', () => {
+            if (activeCard) {
+                activeCard.classList.remove('is-playing');
+                activeCard = null;
+            }
+        });
+
+        buildMusicGrid();
+    </script>
