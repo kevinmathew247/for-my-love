@@ -200,12 +200,45 @@
             "candy","dream","heart","shine","story","grace","light","sweet","spark","brave",
             "smile","sunny","honey","beach","olive","apple","cabin","flora","bloom","lucky",
             "happy","faith","quiet","swoon","cupid","toast","cocoa","angel","piano","music",
-            "toast","amber","crown","mango","jazzy","ocean","pasta","daisy","lemon","charm",
-            "vibes","mirth","noble","royal","vivid","fairy","gleam","novel","bliss","cabin",
-            "peace","grins","cheer","sugar","frost","happy","jolly","snugs","buddy","bunny",
-            "cloud","lilac","satin","berry","spice","cider","cabin","glee","pride","magic",
-            "story","flame","candy","twirl","fable","amour","spark","glory","bound","honey"
+            "amber","crown","mango","jazzy","ocean","pasta","daisy","lemon","charm","vibes", 
+            "mirth","noble","royal","vivid","fairy","gleam","novel","bliss","peace","grins",
+            "cheer","sugar","frost","jolly","snugs","buddy","bunny","cloud","lilac","satin",
+            "berry","spice","cider","greek","pride","magic","flame","twirl","fable","amour",
+            "glory","bound","about","other","which","their","there","after","again","later",
+            "maybe","never","today","night","world","water","house","place","point","right",
+            "think","great","small","large","thing","times","sound","laugh","still","bring",
+            "sorry","early","every","party","child","words","money","month","taste","paint",
+            "write","reads","books","phone","grape","peach","bread","sauce","salad","pizza",
+            "curry","sushi","tacos","nacho","pesto","mocha","latte","wafer","fudge","cream",
+            "couch","chair","table","shelf","coast","river","mount","field","woods","trail",
+            "grass","solar","lunar","plant","petal","tulip","queen","guard","arrow","sword",
+            "trust","dance","swing","salsa","tango","drums","songs","tunes","voice","notes",
+            "choir","movie","drama","scary","ghost","silly","funny","games","cards","chess",
+            "poker","skill","learn","teach","study","class","tests","score","proud","smart",
+            "brain","ideas","goals","build","craft","poems","photo","image","treat","cakes",
+            "donut","baker","spoon","knife","plate","glass","serve","meals","diner","lunch",
+            "fried","bacon","shake","fruit","juice","squad","teams","coach","shoot","match",
+            "rally","share","cared","lovey","above","alone","along","among","anger","angry",
+            "apart","apply","argue","armed","aside","basic","begin","below","birth","black",
+            "blood","board","break","brown","catch","cause","check","chest","chief","clean",
+            "clear","climb","close","color","count","drink","earth","enjoy","enter","equal",
+            "event","false","favor","fever","final","first","floor","found","fresh","front",
+            "giant","globe","green","heavy","horse","human","humor","ideal","issue","least",
+            "leave","level","limit","model","mouth","north","piece","pilot","power","press",
+            "price","prime","quick","raise","reach","ready","relax","reply","round","sense",
+            "short","shout","sleep","smell","smoke","south","space","stage","start","state",
+            "stone","thank","these","those","throw","tiger","touch","train","truth","uncle",
+            "under","until","waste","watch","white","whole","woman","women","worry","worth",
+            "would","young","youth","zebra","ahead","alert","alike","alive","angle","ankle",
+            "beads","beams","bench","birds","blade","blame","bleed","bless","blind","block",
+            "blues","bored","broad","broke","cable","camps","carry","carol","carve","chant",
+            "chase","chill","civic","clerk","clock","clown","could","cover","daily","dairy",
+            "darts","dirty","doing","doubt","dozen","drive","eight","empty","error","essay",
+            "exact","fancy",
         ];
+
+        const validWordSet = new Set();
+        let isValidWordListReady = false;
 
         const gridEl = document.getElementById('wordle-grid');
         const guessInput = document.getElementById('wordle-guess');
@@ -226,6 +259,7 @@
         initGrid();
         updateMeta();
         scheduleMidnightReset();
+        loadValidWords();
 
         function hashDate(str) {
             let h = 0;
@@ -243,6 +277,25 @@
         function pickSecretForDate(dateStr) {
             const idx = Math.abs(hashDate(dateStr)) % WORD_LIST.length;
             return WORD_LIST[idx].toUpperCase();
+        }
+
+        async function loadValidWords() {
+            try {
+                const res = await fetch('valid-wordle-words.txt');
+                const text = await res.text();
+                validWordSet.clear();
+                text.split(/\s+/).forEach((word) => {
+                    const cleaned = word.trim().toUpperCase();
+                    if (cleaned.length === wordLength) {
+                        validWordSet.add(cleaned);
+                    }
+                });
+                isValidWordListReady = true;
+                setMessage("New 5-letter word every day. 6 tries.", "");
+            } catch (err) {
+                console.error("Failed to load valid Wordle words.", err);
+                setMessage("Could not load the valid word list. Please refresh.", "error");
+            }
         }
 
         function initGrid() {
@@ -324,8 +377,20 @@
         function handleSubmit() {
             if (!guessInput) return;
             const raw = guessInput.value.trim().toUpperCase();
+            if (!isValidWordListReady) {
+                setMessage("Word list is still loading. Try again in a moment.", "error");
+                return;
+            }
             if (raw.length !== wordLength) {
                 setMessage("Please enter a 5-letter word.", "error");
+                return;
+            }
+            if (!/^[A-Z]{5}$/.test(raw)) {
+                setMessage("Letters only, 5 characters.", "error");
+                return;
+            }
+            if (!validWordSet.has(raw)) {
+                setMessage("Not in the valid Wordle list.", "error");
                 return;
             }
             renderGuess(raw, currentRow);
