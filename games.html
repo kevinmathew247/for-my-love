@@ -87,11 +87,6 @@
             <div class="wordle-card">
                 <div class="wordle-top">
                     <div class="wordle-players">
-                        <label for="wordle-player">Who’s playing?</label>
-                        <select id="wordle-player">
-                            <option value="Kevin">Kevin</option>
-                            <option value="Archu">Archu</option>
-                        </select>
                         <button class="button game-button wordle-start" id="wordle-start">Start / Reset</button>
                     </div>
                     <div class="wordle-status">
@@ -244,7 +239,6 @@
         const guessInput = document.getElementById('wordle-guess');
         const submitBtn = document.getElementById('wordle-submit');
         const startBtn = document.getElementById('wordle-start');
-        const playerSelect = document.getElementById('wordle-player');
         const triesEl = document.getElementById('wordle-tries');
         const dateEl = document.getElementById('wordle-date');
         const messageEl = document.getElementById('wordle-message');
